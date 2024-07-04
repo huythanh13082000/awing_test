@@ -237,6 +237,7 @@ const Home = () => {
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12)`}
         >
           <Tabs
+            style={{borderBottom: '1px solid rgb(224, 224, 224)'}}
             value={value}
             onChange={handleChange}
             aria-label='basic tabs example'
