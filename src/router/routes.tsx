@@ -1,8 +1,9 @@
+import Home from '../page/home'
 import Login from '../page/login'
 import MyRouteProp from './MyRouteProp'
 
 export const Route = {
-  HOME: '/home',
+  HOME: '/',
   LOGIN: '/login',
 }
 
@@ -14,8 +15,8 @@ const Router: Array<MyRouteProp> = [
   },
   {
     path: Route.HOME,
-    element: <>Home</>,
-    private: true,
+    element: <Home />,
+    private: false,
   },
 ]
 export default Router
