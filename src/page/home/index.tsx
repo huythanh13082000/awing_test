@@ -54,7 +54,7 @@ const Home = () => {
     setSelectItemAds([])
   }, [subCampaignActive])
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
   }
 
@@ -111,7 +111,7 @@ const Home = () => {
       ) {
         const newArray: number[] = []
         data.campaign.subCampaigns[subCampaignActive].ads.forEach(
-          (item, index) => {
+          (_item: any, index) => {
             newArray.push(index)
           }
         )
@@ -204,7 +204,7 @@ const Home = () => {
   }
   const handleDeleteMany = () => {
     const newArray = data.campaign.subCampaigns[subCampaignActive].ads.filter(
-      (item, index) => !selectItemAds.includes(index)
+      (_item: any, index) => !selectItemAds.includes(index)
     )
     data.campaign.subCampaigns[subCampaignActive].ads = [...newArray]
     setData({...data})
