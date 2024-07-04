@@ -151,6 +151,9 @@ const Home = () => {
 
     for (let i = 0; i < subCampaigns.length; i++) {
       const ads = subCampaigns[i].ads
+      if (!subCampaigns[i].name) {
+        return true
+      }
       for (let j = 0; j < ads.length; j++) {
         const ad = ads[j]
         if (!ad.quantity || !ad.name) {
@@ -169,23 +172,27 @@ const Home = () => {
     } else return false
   }
 
-  const validateNameSubCampaign = (
-    data: {quantity: number; name: string}[]
-  ) => {
+  const validateNameSubCampaign = (subCampaigns: {
+    name: string
+    status: boolean
+    ads: {
+      [key: string]: any
+      name: string
+      quantity: number
+    }[]
+  }) => {
     if (isValidate) {
-      if (
-        Number(
-          data
-            .map((item) => item.quantity)
-            .reduce(
-              (accumulator, currentValue) => accumulator + currentValue,
-              0
-            )
-        )
-      ) {
+      if (!subCampaigns.name) {
         return true
-      } else return false
-    } else return true
+      } else {
+        for (let j = 0; j < subCampaigns.ads.length; j++) {
+          const ad = subCampaigns.ads[j]
+          if (!ad.quantity || !ad.name) {
+            return true
+          }
+        }
+      }
+    } else return false
   }
 
   const hideHeaderTable = () => {
@@ -322,7 +329,7 @@ const Home = () => {
                               WebkitBoxOrient: 'vertical',
                               wordBreak: 'break-all',
                               fontSize: '20px',
-                              color: validateNameSubCampaign(item.ads)
+                              color: !validateNameSubCampaign(item)
                                 ? 'black'
                                 : 'red',
                             }}
